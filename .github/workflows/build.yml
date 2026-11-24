@@ -9,8 +9,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: android-actions/setup-android@v3
-      - run: |
+      - name: Terima lisensi Android SDK
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+      - name: Build APK
+        run: |
           unzip -q MinecraftNoLicense.zip
           cd MinecraftNoLicense
           chmod +x gradlew
